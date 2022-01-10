@@ -1,10 +1,13 @@
-import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import AllQuestions from './components/pages/AllQuestions/AllQuestions';
+import AnswersPage from './components/pages/AnswersPage/AnswersPage';
 
 function App() {
   return (
-    <div className="App">
-      <p>Hello</p>
-    </div>
+    <Routes>
+      <Route path="/*" element={<AllQuestions />} />
+      <Route path="answers/:questionId" element={<AnswersPage />} />
+    </Routes>
   );
 }
 
