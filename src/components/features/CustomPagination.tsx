@@ -7,10 +7,12 @@ import fetchQuestions from '../../api/questionsAPI';
 
 import {
   setCurrentPage,
+  setFilter,
   setQuestionsPerPage,
 } from '../../store/questionsReducer';
 
 import {
+  DEFAULT_FILTER,
   DEFAULT_ITEMS_PER_PAGE,
   DEFAULT_PAGE,
   PAGE_SIZE_OPTIONS,
@@ -30,9 +32,12 @@ function CustomPagination() {
   const pageSize = useSelector(
     (state: RootState) => state.questions.questionsPerPage,
   );
+  const sortValue = useSelector((state: RootState) => state.questions.filter);
 
-  // eslint-disable-next-line no-shadow
   const handleChange = (page: number, pageSize: number, sort?: string) => {
+    if (sort) {
+      dispatch(setFilter(sort));
+    }
     dispatch(setCurrentPage(page));
     dispatch(setQuestionsPerPage(pageSize));
     navigate(`/${page}`);
@@ -53,7 +58,8 @@ function CustomPagination() {
         pageSizeOptions={PAGE_SIZE_OPTIONS}
       />
       <Select
-        defaultValue="activity"
+        defaultValue={DEFAULT_FILTER}
+        value={sortValue}
         style={{ width: 120, marginLeft: 10 }}
         onChange={(value) => handleChange(1, pageSize, value)}
       >
