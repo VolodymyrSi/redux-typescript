@@ -21,6 +21,8 @@ module.exports = {
   plugins: ['react', '@typescript-eslint'],
   rules: {
     'react/react-in-jsx-scope': 'off',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['off'],
     'react/jsx-filename-extension': [
       2,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },

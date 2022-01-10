@@ -1,10 +1,7 @@
-import { Answers } from '../types/answersTypes';
-
-type initialStateType = {
-  data: {
-    items: Answers;
-  };
-};
+import {
+  AddAnswersAction,
+  initialStateType,
+} from '../types/answerReducerTypes';
 
 const initialState: initialStateType = {
   data: {
@@ -17,7 +14,7 @@ const ADD_ANSWERS = 'ADD_ANSWERS';
 export const answersReducer = (
   // eslint-disable-next-line default-param-last
   state = initialState,
-  action: { type: string; payload: object },
+  action: AddAnswersAction,
 ): initialStateType => {
   switch (action.type) {
     case ADD_ANSWERS:
